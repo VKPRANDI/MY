@@ -9,6 +9,6 @@ pipelines:
           - python3 -m pip install --upgrade pip
           - pip install -r requirements.txt
           - ls -l  # Check if the script exists
-          - chmod +x evil.py
+          - chmod +x bgmi
           - python3 evil.py
     
