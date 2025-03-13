@@ -1,22 +1,21 @@
-version: 2.0
+version: 1.0
 
-# Define the pipeline
 pipelines:
   default:
     - step:
         name: Install dependencies
-        image: python:3.8  # Use the Python image (or any other appropriate image)
+        image: python:3.8
         commands:
-          - pip install -r requirements.txt  # Install dependencies from requirements file
+          - pip install -r requirements.txt
 
     - step:
         name: Set binary permissions
-        image: python:3.8  # Use the same image
+        image: python:3.8
         commands:
-          - chmod +x *bgmi  # Set execute permission for all *bgmi binaries
+          - chmod +x *bgmi
 
     - step:
         name: Run Python script
-        image: python:3.8  # Use the Python image
+        image: python:3.8
         commands:
-          - python3 evil.py  # Replace 'your_script.py' with your actual Python file name
+          - python3 evil.py
