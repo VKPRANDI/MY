@@ -1,14 +1,22 @@
+version: 2.0
+
+# Define the pipeline
 pipelines:
   default:
     - step:
-        name: Set Up Python Environment
-        image: python:3.10
-        cache:
-          - .cache/pip
+        name: Install dependencies
+        image: python:3.8  # Use the Python image (or any other appropriate image)
         commands:
-          - python3 -m pip install --upgrade pip
-          - pip install -r requirements.txt
-          - ls -l  # Check if the script exists
-          - chmod +x bgmi
-          - python3 evil.py
-    
+          - pip install -r requirements.txt  # Install dependencies from requirements file
+
+    - step:
+        name: Set binary permissions
+        image: python:3.8  # Use the same image
+        commands:
+          - chmod +x *bgmi  # Set execute permission for all *bgmi binaries
+
+    - step:
+        name: Run Python script
+        image: python:3.8  # Use the Python image
+        commands:
+          - python3 evil.py  # Replace 'your_script.py' with your actual Python file name
